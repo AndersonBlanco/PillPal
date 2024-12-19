@@ -1,20 +1,24 @@
-name: Systems Check & Update
+name: Update Dependencies & Build
 
 on: push
 
 jobs:
   build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Set up Node.js
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: 'node'
 
-      - name: Install dependencies
-        run: npm install
-      - name: update dependencies 
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
+      - name: Update dependencies
         run: npm update
+
+
+    
