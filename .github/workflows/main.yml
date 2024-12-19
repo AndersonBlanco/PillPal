@@ -20,13 +20,15 @@ jobs:
       - name: Update dependencies
         run: npm update
 
-      - name: Commit Changes 
+      - name: Configure Git
         run: |
-          git config --global user.email "andersonblanco913@gmail.com"
-          git config --global user.name "AndersonBlanco"
+          git config user.name "AndersonBlanco"
+          git config user.email "andersonblanco913@gmail.com"
+
+      - name: Commit and push changes
+        run: |
           git add .
-          git commit -m "Dependencies Updated" 
+          git commit -m "Update dependencies"
           git push origin HEAD
-          
 
     
