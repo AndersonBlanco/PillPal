@@ -5,7 +5,7 @@ import {createStaticNavigation, NavigationContainer, DefaultTheme} from "@react-
 import {createNativeStackNavigator} from "@react-navigation/native-stack"; 
 
 //screens: 
-import TestScreen from './Screens/TestScreen';
+import AuthScreen from './Screens/AuthScreen';
 
 const Stack = createNativeStackNavigator(); 
  
@@ -25,7 +25,7 @@ export default function App({navigation}) {
       }
       }}>
       <Stack.Navigator screenOptions={{headerShown: false,}}>
-        <Stack.Screen name = "Test" component = {TestScreen}/>
+        <Stack.Screen name = "Test" component = {AuthScreen}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

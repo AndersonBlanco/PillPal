@@ -9,7 +9,7 @@ import { useState } from "react";
 let screenWidth = Dimensions.get("screen").width,
         screenHeight = Dimensions.get("screen").height; 
 
-export default function TestScreen({navigation}){
+export default function AuthScreen({navigation}){
  
     const LogoElem = (
         <View style = {styles.logoContainer}>
