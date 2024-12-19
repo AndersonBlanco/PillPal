@@ -22,6 +22,8 @@ jobs:
 
       - name: Commit Changes 
         run: |
+          git config --global user.email "andersonblanco913@gmail.com"
+          git config --global user.name "AndersonBlanco"
           git add .
           git commit -m "Dependencies Updated" 
           git push origin HEAD
