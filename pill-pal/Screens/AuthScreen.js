@@ -4,14 +4,14 @@ import Logo from "../assets/logo.png";
 import AppleLogo from "../assets/apple_logo.png";
 import GoogleLogo from "../assets/google_logo.png";
 import { useState } from "react";
-//import LogoSVG from "../assets/logo_svg"; 
+import LogoSVG from "../assets/logo_svg"; 
 
 let screenWidth = Dimensions.get("screen").width,
         screenHeight = Dimensions.get("screen").height; 
 
 export default function AuthScreen({navigation}){
  
-    const LogoElem = (
+    const LogoImg = (
         <View style = {styles.logoContainer}>
             <Image source={Logo} style= {styles.logo} />
         </View>
@@ -72,7 +72,7 @@ export default function AuthScreen({navigation}){
                 <TextInput placeholder="password" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}/>
             </TouchableOpacity>
             
-            <TouchableOpacity style = {styles.authButtons}>
+            <TouchableOpacity style = {styles.authButtons} onPress={() => navigation.replace("IntroCustomization")}>
                 <Text style = {styles.authButtons_text}>SignUp</Text>
             </TouchableOpacity>
 
@@ -85,7 +85,8 @@ export default function AuthScreen({navigation}){
    
     return(
         <SafeAreaView style={{alignItems:"center", justifyContent:"center"}}>
-        {LogoElem}
+        <LogoSVG height = {175} style = {{bottom: -50, right: -15}} />
+    
         {AuthType? LogIn : SignUp}
         </SafeAreaView>
     )
@@ -97,7 +98,9 @@ const styles = StyleSheet.create({
     },
     logo:{
 
-        bottom: -50
+        bottom: -50,
+        width: 95, 
+        height: 150
     },
 
     column:{
