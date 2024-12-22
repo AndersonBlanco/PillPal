@@ -10,6 +10,8 @@ import IntroCustomization from './Screens/introCustomization';
 import Home from './Screens/Home';
 import Settings from './Screens/Settings';
 import BottomNav from './components/BottomNav';
+import Permissions from './Screens/Permissions';
+import MyPillPals from './Screens/myPillPals';
 const Stack = createNativeStackNavigator(); 
  
 const PreComponentize = (props) => {
@@ -37,13 +39,17 @@ export default function App({navigation}) {
       }
       }}>
       <Stack.Navigator screenOptions={{headerShown: false, animation:"none"}}>
-  
-      <Stack.Screen name = "Auth" component = {AuthScreen}/>
-      <Stack.Screen name = "IntroCustomization" component = {IntroCustomization}/>
       <Stack.Group name = "Main">
               <Stack.Screen name = "Home" component = {Home}/>
               <Stack.Screen name = "Settings" component = {Settings}/>
+              <Stack.Screen name = "MyPillPals" component = {MyPillPals}/>
+              <Stack.Group name = "Settings_Screens">
+                <Stack.Screen component={Permissions} name = "Permissions" />
+              </Stack.Group>
               
+      <Stack.Screen name = "Auth" component = {AuthScreen}/>
+      <Stack.Screen name = "IntroCustomization" component = {IntroCustomization}/>
+  
         </Stack.Group>
 
       </Stack.Navigator>
