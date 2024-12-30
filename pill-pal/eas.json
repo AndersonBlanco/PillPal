@@ -1,0 +1,26 @@
+{
+  "cli": {
+    "version": ">= 10.1.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal",
+      
+    },
+    "preview": {
+      "distribution": "internal"
+    },
+    "production": {
+    
+    }
+  },
+  "submit": {
+    "production": {
+      "ios":{
+        "ascApiKeyPath":"AuthKey_73TAA74UAK.p8",
+        "ascApiKeyIssuerId": "b8ce3abd-b7ad-44d4-a224-fe446913fe8a",
+      }
+    }
+  }
+}

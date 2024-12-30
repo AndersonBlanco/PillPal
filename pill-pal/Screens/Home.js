@@ -8,27 +8,37 @@ import LogoSVG from "../assets/logo_svg";
 import BottomNav from "../components/BottomNav";
 import User from "../assets/user.png"; 
 import MiniLogoSVG from "../assets/miniLogo";
+
+const userPillPals = {
+    "device1": {
+        "charge": "x%",
+        "Timer": "00:01:00:00",
+        "Haptics": "Flash",
+        "Name": "PillPal1",
+    },
+    "device2": {
+        "charge": "x%",
+        "Timer": "00:01:00:00",
+        "Haptics": "Flash",
+        "Name": "PillPal2"
+    },
+    "device3": {
+        "charge": "x%",
+        "Timer": "00:01:00:00",
+        "Haptics": "Flash",
+        "Name": "PillPal3"
+    },
+  };
+
 export default function Home({navigation}){
  
 let profileImgSize = 110; 
-let userPillPals = {
-    "PillPal1": {
-        "charge": "x%"
-    },
-    "PillPal2": {
-        "charge": "x%"
-    },
-    "PillPal3": {
-        "charge": "x%"
-    },
-};
-
 const ListPillPals = ({dictionary}) =>{
     let ui = []; 
     for(let [k, v] of Object.entries(dictionary)){
         ui.push(
             <View style= {styles.pillpalContainer}>
-                <Text style = {styles.pillpal_name}>{k}</Text>
+                <Text style = {styles.pillpal_name}>{v['Name']}</Text>
                 <Text style = {styles.pillpal_charge}>{v["charge"]}</Text>
             </View>
         )
@@ -46,11 +56,9 @@ const ListPillPals = ({dictionary}) =>{
             </TouchableOpacity>
             <Text style = {{right: -10}}>Username</Text>
        </View>
-
        <View style = {styles.globalPillPalContainer}>
        <ListPillPals dictionary={userPillPals} />
         </View>
-
         <TouchableOpacity onPress={() => navigation.replace("MyPillPals")} style = {styles.addPillPal}><Text style = {{color: "white"}}>Add a PillPal</Text></TouchableOpacity>
         <BottomNav navigation = {navigation} style = {{bottom: -Dimensions.get("screen").height*.8 + 110 + (50) + (15*3.5624*2) + (10 * 4)}}/>
         </SafeAreaView>

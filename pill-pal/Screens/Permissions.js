@@ -44,7 +44,7 @@ export default function Permissions({navigation}){
         ); 
         }
 
-        return ui
+        return ui; 
     }
  
 
@@ -53,16 +53,12 @@ export default function Permissions({navigation}){
          <View>
                 <MiniLogoSVG height = {50} style = {{position:"relaive", right: -width*.9}} />
             </View>
-
             <View style = {{paddingHorizontal: 10}}>
                 <TouchableOpacity style = {styles.backButton_Container} onPress={() => navigation.popTo("Settings")}><RightArrowSVG fill={"rgba(250, 84,84,1)"} style = {styles.rightArrow} /><Text style = {styles.backButton}>Back</Text></TouchableOpacity>
             </View>
-
             <View style = {styles.optionsGlobalContainer}>
             <List dictionary={permissions} />
             </View>
-         
-
         <BottomNav navigation={navigation} style= {{bottom: -height*.8 + (25*4*2) + 50/7.5 + (25*2*3) + (25) + (15*3) + (25*5) + (15*1.15)}} />
         </SafeAreaView>
     )

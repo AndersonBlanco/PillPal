@@ -1,4 +1,4 @@
-package com.pillpal
+package com.anderson913.pillpal
 
 import android.os.Build
 import android.os.Bundle

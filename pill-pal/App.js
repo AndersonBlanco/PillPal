@@ -21,6 +21,29 @@ const PreComponentize = (props) => {
     </SafeAreaView>
   )
 }
+
+const userPillPals = {
+  "PillPal1": {
+      "charge": "x%",
+      "Timer": "00:01:00:00",
+      "Haptics": "Flash",
+      "Name": "PillPal1"
+  },
+  "PillPal2": {
+      "charge": "x%",
+      "Timer": "00:01:00:00",
+      "Haptics": "Flash",
+      "Name": "PillPal1"
+  },
+  "PillPal3": {
+      "charge": "x%",
+      "Timer": "00:01:00:00",
+      "Haptics": "Flash",
+      "Name": "PillPal1"
+  },
+};
+
+
 export default function App({navigation}) {
 
   return (
@@ -39,6 +62,9 @@ export default function App({navigation}) {
       }
       }}>
       <Stack.Navigator screenOptions={{headerShown: false, animation:"none"}}>
+      <Stack.Screen name = "Auth" component = {AuthScreen}/>
+      <Stack.Screen name = "IntroCustomization" component = {IntroCustomization}/>
+  
       <Stack.Group name = "Main">
               <Stack.Screen name = "Home" component = {Home}/>
               <Stack.Screen name = "Settings" component = {Settings}/>
@@ -46,11 +72,7 @@ export default function App({navigation}) {
               <Stack.Group name = "Settings_Screens">
                 <Stack.Screen component={Permissions} name = "Permissions" />
               </Stack.Group>
-              
-      <Stack.Screen name = "Auth" component = {AuthScreen}/>
-      <Stack.Screen name = "IntroCustomization" component = {IntroCustomization}/>
-  
-        </Stack.Group>
+         </Stack.Group>         
 
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,4 +1,4 @@
-package com.pillpal
+package com.anderson913.pillpal
 
 import android.app.Application
 import android.content.res.Configuration
