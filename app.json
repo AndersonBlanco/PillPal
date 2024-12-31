@@ -1,0 +1,29 @@
+{
+  "expo": {
+    "name": "pill-pal",
+    "slug": "pill-pal",
+    "version": "1.1.0",
+    "extra": {
+      "eas": {
+        "projectId": "c9bfa0b8-f90a-466e-aee5-96c70962dfc8"
+      }
+    },
+    "icon": "./icon.png",
+    "ios": {
+      "icon": "./icon.png",
+      "splash": {
+        "image": "./assets/splash.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#FFFFFF"
+    },
+    "android": {
+      "package": "com.anderson913.pillpal"
+    }
+  }
+}
