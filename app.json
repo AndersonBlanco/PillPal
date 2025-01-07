@@ -2,14 +2,15 @@
   "expo": {
     "name": "pill-pal",
     "slug": "pill-pal",
-    "version": "1.1.0",
+    "version": "1.1.3",
     "extra": {
       "eas": {
-        "projectId": "c9bfa0b8-f90a-466e-aee5-96c70962dfc8"
+        "projectId": "2777fd1a-ac1b-4e2a-85b6-ddcc3a17f18b"
       }
     },
     "icon": "./icon.png",
     "ios": {
+      "bundleIdentifier": "com.anderson913.pillpal",
       "icon": "./icon.png",
       "splash": {
         "image": "./assets/splash.png",
