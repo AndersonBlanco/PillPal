@@ -2,7 +2,7 @@
   "expo": {
     "name": "pill-pal",
     "slug": "pill-pal",
-    "version": "1.1.4",
+    "version": "1.1.6",
     "extra": {
       "eas": {
         "projectId": "2777fd1a-ac1b-4e2a-85b6-ddcc3a17f18b"
