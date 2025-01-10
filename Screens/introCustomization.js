@@ -7,7 +7,13 @@ import { useState } from "react";
 import UploadSVG from "../assets/uploadSVG";
 import CameraSVG from "../assets/cameraSVG"; 
 import User from "../assets/user.png"; 
-export default function IntroCustomization({navigation}){
+//redux
+import { Provider, useSelector, useDispatch } from 'react-redux';
+import { getState, store } from '../store';
+import { nav, selectNavigation, render } from '../navigationSlice';
+
+
+export default function IntroCustomization(){
     const [imageDisp, setImageDisp] = useState(User); 
     const SelectImageActionButton = () =>{
         return(
@@ -16,15 +22,16 @@ export default function IntroCustomization({navigation}){
     }
 
     const svgSize = 34; 
+    const dispatch = useDispatch(); 
     return(
-        <SafeAreaView style={{alignItems:"center", justifyContent:"center"}}>
-            <TouchableOpacity onPress={() => navigation.replace("Home")} style = {{width: Dimensions.get("screen").width, position:"relative", left: Dimensions.get("screen").width * .85}}>
+      <>
+            <TouchableOpacity onPress={() => dispatch(nav("Home"))} style = {{width: Dimensions.get("screen").width, position:"relative", left: Dimensions.get("screen").width * .85, top: -125}}>
             <Text style = {{fontSize: 17, color: "rgba(250, 84,84,1)"}}>Next</Text> 
             </TouchableOpacity>
 
        
 
-            <View style = {[styles.column, {rowGap: 150, bottom: -40, justifyContent:"center", alignItems:"cenetr", textAlign:"center", bottom: -150}]}>
+            <View style = {[styles.column, {rowGap: 150, bottom: 0, justifyContent:"center", alignItems:"cenetr", textAlign:"center", bottom: 0}]}>
 
             <TouchableOpacity style = {{justifyContent:"center", alignItems:"center"}}>
                 <Image source = {imageDisp} style = {styles.profileImage} />
@@ -42,7 +49,7 @@ export default function IntroCustomization({navigation}){
             </View>
 
             </View>
-        </SafeAreaView>
+    </>
     )
 }
 

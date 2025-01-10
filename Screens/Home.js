@@ -48,20 +48,20 @@ const ListPillPals = ({dictionary}) =>{
 }; 
 
     return(
-        <SafeAreaView style = {{alignItems:"center", justifyContent:"center"}}>
+    <>
             <MiniLogoSVG height = {50} style = {{position:"absolute", right: 12.5, top: 48}}/>
-    <View style = {[styles.column, {rowGap: 110}]}>
-            <TouchableOpacity style = {{bottom: -100}}>
+    <View style = {[styles.column, {rowGap: 100}]}>
+            <TouchableOpacity style = {{bottom: 50}}>
                 <Image source = {User} style = {{height: profileImgSize, width: profileImgSize}} />
             </TouchableOpacity>
-            <Text style = {{right: -10}}>Username</Text>
+            <Text style = {{right: -10, top: -125}}>Username</Text>
        </View>
        <View style = {styles.globalPillPalContainer}>
        <ListPillPals dictionary={userPillPals} />
         </View>
         <TouchableOpacity onPress={() => navigation.replace("MyPillPals")} style = {styles.addPillPal}><Text style = {{color: "white"}}>Add a PillPal</Text></TouchableOpacity>
         <BottomNav navigation = {navigation} style = {{bottom: -Dimensions.get("screen").height*.8 + 110 + (50) + (15*3.5624*2) + (10 * 4)}}/>
-        </SafeAreaView>
+        </>
     )
 }
 
@@ -81,7 +81,7 @@ const styles = StyleSheet.create({
     },
 
     globalPillPalContainer:{
-     bottom: -50, 
+     bottom: 50, 
     },
     pillpalContainer:{
         display:"flex",
@@ -106,7 +106,7 @@ addPillPal:{
     justifyContent:"center",
     width: Dimensions.get("screen").width * .7, 
     borderRadius: 100,
-    bottom: -250
+    bottom: -50
      
 }
 })
