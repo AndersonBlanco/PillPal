@@ -8,7 +8,7 @@ import LogoSVG from "../assets/logo_svg";
 
 //redux
 import { Provider, useSelector, useDispatch } from 'react-redux';
-import { getState, store } from '../store';
+import { store } from '../store';
 import { nav, selectNavigation, render } from '../navigationSlice';
 
 

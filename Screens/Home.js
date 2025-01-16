@@ -1,4 +1,4 @@
-import {View, Text, Image, SafeAreaView, StyleSheet, ImageBackground, TextInput, TouchableOpacity} from "react-native";
+import {View, Text, Image, SafeAreaView, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView, Touchable} from "react-native";
 import { Dimensions } from "react-native";
 import Logo from "../assets/logo.png"; 
 import AppleLogo from "../assets/apple_logo.png";
@@ -8,48 +8,41 @@ import LogoSVG from "../assets/logo_svg";
 import BottomNav from "../components/BottomNav";
 import User from "../assets/user.png"; 
 import MiniLogoSVG from "../assets/miniLogo";
-
-const userPillPals = {
-    "device1": {
-        "charge": "x%",
-        "Timer": "00:01:00:00",
-        "Haptics": "Flash",
-        "Name": "PillPal1",
-    },
-    "device2": {
-        "charge": "x%",
-        "Timer": "00:01:00:00",
-        "Haptics": "Flash",
-        "Name": "PillPal2"
-    },
-    "device3": {
-        "charge": "x%",
-        "Timer": "00:01:00:00",
-        "Haptics": "Flash",
-        "Name": "PillPal3"
-    },
-  };
+import Modal from "react-native-modal"; 
+import DrawerLayout from 'react-native-gesture-handler/DrawerLayout';
+import { myPillPalsSlice, selecMyPillPals } from "../myPillPalsSlice";
+import { Provider, useSelector, useDispatch } from 'react-redux'; 
+import { store } from "../store";
+import SideMenu from "../components/sideMenu";
 
 export default function Home({navigation}){
+    const myPillPals_reduxState = useSelector((state) => state.myPillPals.value); 
+    
  
 let profileImgSize = 110; 
 const ListPillPals = ({dictionary}) =>{
     let ui = []; 
-    for(let [k, v] of Object.entries(dictionary)){
+    dictionary.map(i => 
         ui.push(
-            <View style= {styles.pillpalContainer}>
-                <Text style = {styles.pillpal_name}>{v['Name']}</Text>
-                <Text style = {styles.pillpal_charge}>{v["charge"]}</Text>
+            <View key={i.id} style= {styles.pillpalContainer}>
+                <Text style = {styles.pillpal_name}>{i['Name']}</Text>
+                <Text style = {styles.pillpal_charge}>{i['charge']}</Text>
             </View>
         )
-    };
+    );
 
-    return ui; 
-}; 
+    return ui;
+    
+};
+
+// <BottomNav navigation = {navigation} style = {{bottom: -Dimensions.get("screen").height*.8 + 110 + (50) + (15*3.5624*2) + (10 * 4)}}/>
+// <TouchableOpacity onPressIn={() => alert("Hello Universe")} style = {{right: -50,alignItems:"center", backgroundColor:"transparent"}}><Text onPress = {() =>alert("Hello")} style = {{color: "rgba(0,0,0,.5)", fontSize: 30, fontWeight: "100", right: -25}}>{">"}</Text></TouchableOpacity>
+
+const [modalView, setModalView] = useState(false); 
 
     return(
     <>
-            <MiniLogoSVG height = {50} style = {{position:"absolute", right: 12.5, top: 48}}/>
+    <TouchableOpacity onPress = {() => setModalView(!modalView)} style = {{position:"absolute", left: 20.5, top: 48}}><MiniLogoSVG height = {50}/></TouchableOpacity>
     <View style = {[styles.column, {rowGap: 100}]}>
             <TouchableOpacity style = {{bottom: 50}}>
                 <Image source = {User} style = {{height: profileImgSize, width: profileImgSize}} />
@@ -57,10 +50,11 @@ const ListPillPals = ({dictionary}) =>{
             <Text style = {{right: -10, top: -125}}>Username</Text>
        </View>
        <View style = {styles.globalPillPalContainer}>
-       <ListPillPals dictionary={userPillPals} />
+       <ListPillPals dictionary={myPillPals_reduxState['pillPals']} />
         </View>
         <TouchableOpacity onPress={() => navigation.replace("MyPillPals")} style = {styles.addPillPal}><Text style = {{color: "white"}}>Add a PillPal</Text></TouchableOpacity>
-        <BottomNav navigation = {navigation} style = {{bottom: -Dimensions.get("screen").height*.8 + 110 + (50) + (15*3.5624*2) + (10 * 4)}}/>
+        <SideMenu styles = {styles} state = {modalView} stateChangeFunction={setModalView} />
+
         </>
     )
 }
@@ -108,5 +102,10 @@ addPillPal:{
     borderRadius: 100,
     bottom: -50
      
+},
+lineBreak:{
+    backgroundColor: "lightgray",
+    height: 1, 
+    
 }
 })

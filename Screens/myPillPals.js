@@ -8,29 +8,11 @@ import LogoSVG from "../assets/logo_svg";
 import BottomNav from "../components/BottomNav";
 import User from "../assets/user.png"; 
 import MiniLogoSVG from "../assets/miniLogo";
+import { useSelector } from "react-redux";
 
-const userPillPals = {
-    "PillPal1": {
-        "charge": "x%",
-        "Timer": "00:01:00:00",
-        "Haptics": "Flash",
-        "Name": "PillPal1"
-    },
-    "PillPal2": {
-        "charge": "x%",
-        "Timer": "00:01:00:00",
-        "Haptics": "Flash",
-        "Name": "PillPal1"
-    },
-    "PillPal3": {
-        "charge": "x%",
-        "Timer": "00:01:00:00",
-        "Haptics": "Flash",
-        "Name": "PillPal1"
-    },
-  };
-export default function MyPillPals({navigation}){
-    
+export default function MyPillPals(){
+    const myPillPals_reduxState = useSelector((state) => state.myPillPals.value); 
+
     const Edit = ({action})=>{
         return <TouchableOpacity style = {styles.editContainer} onPress={action}><Text style = {styles.editText}>edit</Text></TouchableOpacity>
     }
@@ -73,10 +55,10 @@ export default function MyPillPals({navigation}){
          <MiniLogoSVG height = {50} style = {{position:"absolute", right: 12.5, top: 48}}/>
 
       <ScrollView style = {styles.gllobalMyPillPalsSetts} showsVerticalScrollIndicator>
-         <ListPillPalss dictionary={userPillPals} />
+         <ListPillPalss dictionary={myPillPals_reduxState} />
       </ScrollView>
 
-            <BottomNav navigation={navigation} style = {{bottom: -Dimensions.get("screen").height * .192, }}/> 
+           
         </SafeAreaView>
     )
 }

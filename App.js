@@ -18,6 +18,7 @@ import { useEventListener } from 'expo';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import { getState, store } from './store';
 import { nav, selectNavigation, render } from './navigationSlice';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator(); 
  
@@ -57,6 +58,7 @@ const dispatch = useDispatch();
 
 let currentId = navState.routes[navState.currentRoute].id; 
   return (
+    
     <SafeAreaView style = {styles.container}>
   
       {
@@ -79,6 +81,7 @@ let currentId = navState.routes[navState.currentRoute].id;
 
       }
     </SafeAreaView>
+    
   );
 }
 

@@ -1,5 +1,6 @@
 {
   "expo": {
+    "newArchEnabled": true,
     "name": "pill-pal",
     "slug": "pill-pal",
     "version": "1.1.6",
