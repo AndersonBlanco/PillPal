@@ -13,11 +13,14 @@ import DrawerLayout from 'react-native-gesture-handler/DrawerLayout';
 import { myPillPalsSlice, selecMyPillPals } from "../myPillPalsSlice";
 import { Provider, useSelector, useDispatch } from 'react-redux'; 
 import { store } from "../store";
+//import SideMenu from "../components/sideMenu";
+ 
+import { nav } from "../navigationSlice";
 import SideMenu from "../components/sideMenu";
 
 export default function Home({navigation}){
     const myPillPals_reduxState = useSelector((state) => state.myPillPals.value); 
-    
+    const dispatch = useDispatch(); 
  
 let profileImgSize = 110; 
 const ListPillPals = ({dictionary}) =>{
@@ -37,12 +40,9 @@ const ListPillPals = ({dictionary}) =>{
 
 // <BottomNav navigation = {navigation} style = {{bottom: -Dimensions.get("screen").height*.8 + 110 + (50) + (15*3.5624*2) + (10 * 4)}}/>
 // <TouchableOpacity onPressIn={() => alert("Hello Universe")} style = {{right: -50,alignItems:"center", backgroundColor:"transparent"}}><Text onPress = {() =>alert("Hello")} style = {{color: "rgba(0,0,0,.5)", fontSize: 30, fontWeight: "100", right: -25}}>{">"}</Text></TouchableOpacity>
-
-const [modalView, setModalView] = useState(false); 
-
+ 
     return(
     <>
-    <TouchableOpacity onPress = {() => setModalView(!modalView)} style = {{position:"absolute", left: 20.5, top: 48}}><MiniLogoSVG height = {50}/></TouchableOpacity>
     <View style = {[styles.column, {rowGap: 100}]}>
             <TouchableOpacity style = {{bottom: 50}}>
                 <Image source = {User} style = {{height: profileImgSize, width: profileImgSize}} />
@@ -52,9 +52,8 @@ const [modalView, setModalView] = useState(false);
        <View style = {styles.globalPillPalContainer}>
        <ListPillPals dictionary={myPillPals_reduxState['pillPals']} />
         </View>
-        <TouchableOpacity onPress={() => navigation.replace("MyPillPals")} style = {styles.addPillPal}><Text style = {{color: "white"}}>Add a PillPal</Text></TouchableOpacity>
-        <SideMenu styles = {styles} state = {modalView} stateChangeFunction={setModalView} />
-
+        <TouchableOpacity onPress={() =>dispatch(nav("MyPillPals"))} style = {styles.addPillPal}><Text style = {{color: "white"}}>Add a PillPal</Text></TouchableOpacity>
+        <SideMenu/>
         </>
     )
 }

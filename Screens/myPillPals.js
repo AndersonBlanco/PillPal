@@ -9,7 +9,7 @@ import BottomNav from "../components/BottomNav";
 import User from "../assets/user.png"; 
 import MiniLogoSVG from "../assets/miniLogo";
 import { useSelector } from "react-redux";
-
+import SideMenu from "../components/sideMenu";
 export default function MyPillPals(){
     const myPillPals_reduxState = useSelector((state) => state.myPillPals.value); 
 
@@ -18,13 +18,13 @@ export default function MyPillPals(){
     }
     const ListPillPalss = ({dictionary}) =>{
         let ui = [];
-        for(let [k, v] of Object.entries(dictionary)){
+       dictionary.map(i => 
             ui.push(
-                <View style = {styles.myPillPalContainer}>
+                <View style = {styles.myPillPalContainer} key = {i.id}>
 
                 <View style= {[styles.row, {columnGap: 265, width: Dimensions.get("screen").width}]}>
-                    <Text>{k}</Text>
-                    <Text>{v['charge']}</Text>
+                    <Text>{i["Name"]}</Text>
+                    <Text>{i['charge']}</Text>
                 </View>
 
                 <View style = {[styles.row, {justifyContent:"space-between", marginTop: 50}]}>
@@ -45,30 +45,30 @@ export default function MyPillPals(){
                 
                 
             </View>
-            );
-        };
+            )
+        )
+ 
 
         return ui; 
     }
     return(
-        <SafeAreaView>
-         <MiniLogoSVG height = {50} style = {{position:"absolute", right: 12.5, top: 48}}/>
-
+    <>
+  <SideMenu/>
       <ScrollView style = {styles.gllobalMyPillPalsSetts} showsVerticalScrollIndicator>
-         <ListPillPalss dictionary={myPillPals_reduxState} />
+        <ListPillPalss dictionary = {myPillPals_reduxState['pillPals']}/>
       </ScrollView>
 
            
-        </SafeAreaView>
+       </>
     )
 }
 
 const styles = StyleSheet.create({
     gllobalMyPillPalsSetts:{
-        bottom: -70, 
+        bottom: -45, 
         rowGap: 10, 
         backgroundColor:"transparent",
-        maxHeight: Dimensions.get("screen").height * .755
+        maxHeight: Dimensions.get("screen").height * .89
     },
     myPillPalContainer:{
         borderTopWidth: 1,

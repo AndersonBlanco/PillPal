@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Button, SafeAreaView, SectionList, StyleSheet, Text, View} from 'react-native';
+import { Button, SafeAreaView, SectionList, StyleSheet, Text, View, Animated} from 'react-native';
 import {createStaticNavigation, NavigationContainer, DefaultTheme} from "@react-navigation/native"; 
 import {createNativeStackNavigator} from "@react-navigation/native-stack"; 
  
@@ -91,6 +91,8 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     alignItems: 'center',
     justifyContent: 'center',
-    paddingTop: -100
+    paddingTop: -100,
+    transitionDuration: "1s",
+    
   },
 });

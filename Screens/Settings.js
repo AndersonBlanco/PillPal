@@ -9,14 +9,15 @@ import MiniLogoSVG from "../assets/miniLogo";
 import BottomNav from "../components/BottomNav";
 import User from "../assets/user.png"; 
 import RightArrowSVG from "../assets/rightArrow";
-
+import SideMenu from "../components/sideMenu";
+import { useDispatch } from "react-redux";
 const width = Dimensions.get("screen").width,
       height = Dimensions.get("screen").height; 
 
 export default function Settings({navigation}){
     //  <TouchableOpacity style = {styles.pressable}><Text style = {[styles.pressablmeTex, {color: "red"}]}>Delete Account</Text><GArrow style ={styles.gArrow} fill = "red" /></TouchableOpacity>
     const [localSettingsCurrentPage, setLocalSettingsCurrentPage] = useState(0);
-
+  
     /**
      * 0 =  
      * 1 = Permissions 
@@ -28,21 +29,19 @@ export default function Settings({navigation}){
  
 //  <TouchableOpacity style = {styles.settingButtonContainer}><View style = {styles.row}><Text  style = {styles.settingName}>Feedback</Text><RightArrowSVG style = {styles.arrowRight} fill = "rgba(0,0,0,.4)"/></View></TouchableOpacity>
     return(
-        <SafeAreaView>
-
-            <View>
-                <MiniLogoSVG height = {50} style = {{position:"relaive", right: -width*.9}} />
-            </View>
+        <>
+     <SideMenu/>
 
             <View style = {styles.settingButtonsGroup}>
-            <TouchableOpacity onPress={() =>navigation.replace("Permissions", "Settings")} style = {styles.settingButtonContainer}><View style = {styles.row}><Text  style = {styles.settingName}>Permissions</Text><RightArrowSVG style = {styles.arrowRight} fill = "rgba(0,0,0,.4)"/></View></TouchableOpacity>
+            <TouchableOpacity onPress={() =>{}} style = {styles.settingButtonContainer}><View style = {styles.row}><Text  style = {styles.settingName}>Permissions</Text><RightArrowSVG style = {styles.arrowRight} fill = "rgba(0,0,0,.4)"/></View></TouchableOpacity>
             <TouchableOpacity style = {styles.settingButtonContainer}><View style = {styles.row}><Text  style = {styles.settingName}>Privacy</Text><RightArrowSVG style = {styles.arrowRight} fill = "rgba(0,0,0,.4)"/></View></TouchableOpacity>
             <TouchableOpacity style = {styles.settingButtonContainer}><View style = {styles.row}><Text  style = {styles.settingName}>Terms & Services</Text><RightArrowSVG style = {styles.arrowRight} fill = "rgba(0,0,0,.4)"/></View></TouchableOpacity>
           
             <TouchableOpacity style = {styles.settingButtonContainer}><View style = {styles.row}><Text  style = {styles.settingName}>Software Details</Text><RightArrowSVG style = {styles.arrowRight} fill = "rgba(0,0,0,.4)"/></View></TouchableOpacity>
+            <TouchableOpacity style = {[styles.settingButtonContainer, {position:"relative", bottom: -380}]}><View style = {styles.row}><Text  style = {[styles.settingName, {color: "red"}]}>SignOut</Text><RightArrowSVG style = {styles.arrowRight} fill = "rgba(255, 0, 0, 0.7)"/></View></TouchableOpacity>
             </View>
-            <BottomNav navigation={navigation} style= {{bottom: -height*.8 + (25*4*2) + 50/7.5}} />
-        </SafeAreaView>
+            
+        </>
     )
 }
 const styles = StyleSheet.create({
@@ -52,7 +51,12 @@ settingButtonsGroup:{
       display:"flex",
       flexDirection:"column",
       position:"relative",
-      bottom: -10
+      bottom: 0,
+      width: "90%",
+      alignSelf:"center",
+     backgroundColor: "transparent", 
+     height: "80%",
+     
 
 },
 
@@ -64,7 +68,7 @@ settingButtonContainer:{
     justifyContent: "flex-start",
     textAlign:"left",
     paddingVertical: 25,
-    paddingHorizontal: 25
+    paddingHorizontal: 0
     
 },
 
