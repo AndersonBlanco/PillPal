@@ -1,4 +1,4 @@
-import { ScrollView, FlatList, View, Text, Image, SafeAreaView, StyleSheet, ImageBackground, TextInput, TouchableOpacity, Button} from "react-native";
+import { ScrollView, FlatList, View, Text, SafeAreaView, StyleSheet, ImageBackground, TextInput, TouchableOpacity, Button} from "react-native";
 import { Dimensions } from "react-native";
 import Logo from "../assets/logo.png"; 
 import AppleLogo from "../assets/apple_logo.png";
@@ -10,7 +10,11 @@ import User from "../assets/user.png";
 import MiniLogoSVG from "../assets/miniLogo";
 import { useSelector } from "react-redux";
 import SideMenu from "../components/sideMenu";
+import BleStart from "../components/blueDevices";
 export default function MyPillPals(){
+ 
+
+
     const myPillPals_reduxState = useSelector((state) => state.myPillPals.value); 
 
     const Edit = ({action})=>{
@@ -43,7 +47,6 @@ export default function MyPillPals(){
 
                 </View>
                 
-                
             </View>
             )
         )
@@ -55,7 +58,10 @@ export default function MyPillPals(){
     <>
   <SideMenu/>
       <ScrollView style = {styles.gllobalMyPillPalsSetts} showsVerticalScrollIndicator>
+        <Text>Hello Universe</Text>
+        <BleStart/>
         <ListPillPalss dictionary = {myPillPals_reduxState['pillPals']}/>
+
       </ScrollView>
 
            

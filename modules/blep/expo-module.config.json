@@ -1,0 +1,17 @@
+{
+  "platforms": [
+    "apple",
+    "android",
+    "web"
+  ],
+  "apple": {
+    "modules": [
+      "BlepModule"
+    ]
+  },
+  "android": {
+    "modules": [
+      "expo.modules.blep.BlepModule"
+    ]
+  }
+}
