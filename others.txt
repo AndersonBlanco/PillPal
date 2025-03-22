@@ -27,3 +27,25 @@
 
       </Stack.Navigator>
     </NavigationContainer>"
+
+
+        "plugins": [
+      "@confg-plugins/react-native-ble-plx"
+    ]
+    
+
+
+
+    <!--Bluetooth setup START-->
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>App requires Bluetooth to connect to IoT devices</string>
+<key>NSBluetoothPeripheralUsageDescription</key>
+<string>Bluetooth is needed to interact with IoT sensors</string>
+<!--Bluetooth setup END-->
+
+
+
+for Android: AndroidManifest.xml
+  <uses-permission android:name="android.permission.BLUETOOTH_ADVERTISE" />
+  <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+  <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />

@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useEffect, useState } from 'react';
-import { Button, SafeAreaView, SectionList, StyleSheet, Text, View, Animated} from 'react-native';
+import { Button, SafeAreaView, SectionList, StyleSheet, Text, View, Animated, NativeEventEmitter} from 'react-native';
 import {createStaticNavigation, NavigationContainer, DefaultTheme} from "@react-navigation/native"; 
 import {createNativeStackNavigator} from "@react-navigation/native-stack"; 
  
@@ -18,43 +18,11 @@ import { useEventListener } from 'expo';
 import { Provider, useSelector, useDispatch } from 'react-redux';
 import { getState, store } from './store';
 import { nav, selectNavigation, render } from './navigationSlice';
-import { GestureHandlerRootView } from 'react-native-gesture-handler';
-
-const Stack = createNativeStackNavigator(); 
- 
-const PreComponentize = (props) => {
-  return(
-    <SafeAreaView>
-      {props}
-    </SafeAreaView>
-  )
-}
-
-const userPillPals = {
-  "PillPal1": {
-      "charge": "x%",
-      "Timer": "00:01:00:00",
-      "Haptics": "Flash",
-      "Name": "PillPal1"
-  },
-  "PillPal2": {
-      "charge": "x%",
-      "Timer": "00:01:00:00",
-      "Haptics": "Flash",
-      "Name": "PillPal1"
-  },
-  "PillPal3": {
-      "charge": "x%",
-      "Timer": "00:01:00:00",
-      "Haptics": "Flash",
-      "Name": "PillPal1"
-  },
-};
-
 
 export default function App() {
 const navState = useSelector(selectNavigation);
 const dispatch = useDispatch(); 
+ 
 
 let currentId = navState.routes[navState.currentRoute].id; 
   return (

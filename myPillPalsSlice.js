@@ -7,21 +7,21 @@ export const myPillPalsSlice = createSlice({
             pillPals: [
                 {
                     "id": 0, 
-                    "charge": "x%",
+                    "charge": "100%",
                     "Timer": "00:01:00:00",
                     "Haptics": "Flash",
                     "Name": "PillPal1",
                 },
                 {
                     "id": 1,
-                    "charge": "x%",
+                    "charge": "75%",
                     "Timer": "00:01:00:00",
                     "Haptics": "Flash",
                     "Name": "PillPal2"
                 },
                 {
                     "id": 2,
-                    "charge": "x%",
+                    "charge": "50%",
                     "Timer": "00:01:00:00",
                     "Haptics": "Flash",
                     "Name": "PillPal3"
