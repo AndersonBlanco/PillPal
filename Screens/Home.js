@@ -1,9 +1,10 @@
-import {View, Text, Image, SafeAreaView, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView, Touchable} from "react-native";
+
+import {View, Text, Image, SafeAreaView, StyleSheet, ImageBackground, TextInput, TouchableOpacity, ScrollView, Touchable, NativeEventEmitter} from "react-native";
 import { Dimensions } from "react-native";
 import Logo from "../assets/logo.png"; 
 import AppleLogo from "../assets/apple_logo.png";
 import GoogleLogo from "../assets/google_logo.png";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LogoSVG from "../assets/logo_svg"; 
 import BottomNav from "../components/BottomNav";
 import User from "../assets/user.png"; 
@@ -13,12 +14,54 @@ import DrawerLayout from 'react-native-gesture-handler/DrawerLayout';
 import { myPillPalsSlice, selecMyPillPals } from "../myPillPalsSlice";
 import { Provider, useSelector, useDispatch } from 'react-redux'; 
 import { store } from "../store";
-//import SideMenu from "../components/sideMenu";
- 
 import { nav } from "../navigationSlice";
 import SideMenu from "../components/sideMenu";
 
+//import BleManager, { BleState, Peripheral }  from 'react-native-ble-manager';
+import { NativeModules, NativeAppEventEmitter, DeviceEventEmitter, Platform} from "react-native";
+import { BleManager } from "react-native-ble-plx";
+import { EventEmitter, } from "expo";
+
+//getting permission:
+
+async function requestPermission(){
+  try{
+
+  const res =  await check(PERMISSIONS.IOS.BLUETOOTH) ;
+
+  if(res == RESULTS.GRANTED){
+    console.log("Bluetooth enabled");
+  }else if(res == RESULTS.DENIED){
+    const req_res = request(PERMISSIONS.IOS.BLUETOOTH); 
+    if(req_res == RESULTS.GRANTED){
+      console.log("Bluetooth perm just granted")
+    }else{
+      console.log("Permission denied!")
+    }
+  }else{
+    console.log("Unknown permission"); 
+  }
+}catch(e){
+  console.log("Error: ");
+   console.log(e); 
+}
+
+}
+
 export default function Home({navigation}){
+    const [man, setMan] = useState();
+
+
+    useEffect(() =>{
+       // requestPermission();
+
+       
+       return () =>{
+        
+       }; 
+       
+    },[]); 
+
     const myPillPals_reduxState = useSelector((state) => state.myPillPals.value); 
     const dispatch = useDispatch(); 
  

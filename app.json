@@ -32,7 +32,19 @@
       "package": "com.anderson913.pillpal"
     },
     "plugins": [
-      "react-native-ble-manager"
-    ]
+      ["react-native-ble-plx"], 
+      ["react-native-ble-manager", {"bluetoothAlwaysPermission": true, "isBackgroundEnabled": true}],
+
+      [
+        "@config-plugins/react-native-ble-plx",
+        {
+          "isBackgroundEnabled": true,
+          "modes": ["central"],
+          "bluetoothAlwaysPermission": "Allow $(PRODUCT_NAME) to connect to bluetooth devices"
+        }
+      ],
+    ],
+
+    
   }
 }
