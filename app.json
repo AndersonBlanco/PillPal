@@ -18,9 +18,9 @@
         "resizeMode": "contain",
         "backgroundColor": "#FFFFFF",
         "infoPlist": {
-        "NSBluetoothAlwaysUsageDescription": "This app needs Bluetooth to connect to nearby devices.",
-        "NSBluetoothPeripheralUsageDescription": "This app uses Bluetooth to detect and interact with peripherals."
-      }
+          "NSBluetoothAlwaysUsageDescription": "This app needs Bluetooth to connect to nearby devices.",
+          "NSBluetoothPeripheralUsageDescription": "This app uses Bluetooth to detect and interact with peripherals."
+        }
       }
     },
     "splash": {
@@ -32,7 +32,7 @@
       "package": "com.anderson913.pillpal"
     },
     "plugins": [
-      "react-native-ble-plx",
+      "react-native-ble-manager"
     ]
   }
 }

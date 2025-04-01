@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, Button } from 'react-native';
+import { View, Text, Button, NativeEventEmitter } from 'react-native';
 import { BleManager } from 'react-native-ble-plx'; // Named import for clarity
 
+const init = new BleManager(); 
 const BleStart = () => {
-  const [manager] = useState(() => {
+  const [manager, setManager] = useState(() => {
     try {
-      return new BleManager();
+    
+      return new NativeEventEmitter(init);
     } catch (e) {
       console.error('Failed to initialize BleManager:', e);
       return null;
     }
   });
+
   const [devices, setDevices] = useState([]);
 
   const startScan = () => {
@@ -48,6 +51,8 @@ const BleStart = () => {
       if (manager) {
         manager.stopDeviceScan();
         manager.destroy();
+      }else{
+        alert("No Manager!")
       }
     };
   }, [manager]);

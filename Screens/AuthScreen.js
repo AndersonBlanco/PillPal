@@ -54,7 +54,7 @@ export default function AuthScreen(){
                 <TextInput placeholder="password" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}/>
             </TouchableOpacity>
 
-            <TouchableOpacity style = {styles.authButtons}>
+            <TouchableOpacity style = {styles.authButtons} onPress ={() => dispatch(nav("IntroCustomization"))}>
                 <Text style = {styles.authButtons_text}>SignIn</Text>
             </TouchableOpacity>
 

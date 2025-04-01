@@ -10,10 +10,15 @@ import User from "../assets/user.png";
 import MiniLogoSVG from "../assets/miniLogo";
 import { useSelector } from "react-redux";
 import SideMenu from "../components/sideMenu";
-import BleStart from "../components/blueDevices";
+//import BleStart from "../components/blueDevices";
+import { BleManager, Device } from 'react-native-ble-plx'; // Named import for clarity
+
+//const init = new BleManager(); 
+//const Devs = new Device(); 
+
 export default function MyPillPals(){
  
-
+   
 
     const myPillPals_reduxState = useSelector((state) => state.myPillPals.value); 
 
@@ -59,7 +64,7 @@ export default function MyPillPals(){
   <SideMenu/>
       <ScrollView style = {styles.gllobalMyPillPalsSetts} showsVerticalScrollIndicator>
         <Text>Hello Universe</Text>
-        <BleStart/>
+       
         <ListPillPalss dictionary = {myPillPals_reduxState['pillPals']}/>
 
       </ScrollView>

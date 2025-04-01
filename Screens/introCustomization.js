@@ -31,7 +31,7 @@ export default function IntroCustomization(){
 
        
 
-            <View style = {[styles.column, {rowGap: 150, bottom: 0, justifyContent:"center", alignItems:"cenetr", textAlign:"center", bottom: 0}]}>
+            <View style = {[styles.column, {rowGap: 150,  justifyContent:"center", alignItems:"center", textAlign:"center", bottom: 0, }]}>
 
             <TouchableOpacity style = {{justifyContent:"center", alignItems:"center"}}>
                 <Image source = {imageDisp} style = {styles.profileImage} />
