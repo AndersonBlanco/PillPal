@@ -3,7 +3,7 @@ import { Dimensions } from "react-native";
 import Logo from "../assets/logo.png"; 
 import AppleLogo from "../assets/apple_logo.png";
 import GoogleLogo from "../assets/google_logo.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LogoSVG from "../assets/logo_svg"; 
 
 //redux
@@ -11,12 +11,100 @@ import { Provider, useSelector, useDispatch } from 'react-redux';
 import { store } from '../store';
 import { nav, selectNavigation, render } from '../navigationSlice';
 
+//auth firebase: 
+import { app, auth, aple_provider} from "./firebase.js"; 
+import { GoogleAuthProvider, getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signInWithRedirect, getRedirectResult, signInWithPopup} from "firebase/auth";
 
 let screenWidth = Dimensions.get("screen").width,
         screenHeight = Dimensions.get("screen").height; 
+const googleProvider = new GoogleAuthProvider(); 
 
         
 export default function AuthScreen(){
+    //dispatch(nav("IntroCustomization")
+    
+    function signUp_auth(username, email, password, callback){ 
+        createUserWithEmailAndPassword(
+            auth, 
+            email,
+            password
+        )
+        .then((userCreds) =>{ 
+            console.log(userCreds.user.email);
+    
+            callback(); 
+        })
+        .catch((err) =>{
+            console.log("error: ", err); 
+        });
+    
+    
+    }
+    
+    
+    function signIn_auth(email, password, callback){
+        signInWithEmailAndPassword(
+            auth, 
+            email, 
+            password
+        )
+        .then((res) =>{
+            console.log("signed in: ", res.user.email);
+            callback(); 
+        })
+        .catch((err) =>{
+            console.log("err: ", err); 
+        });
+    }
+
+    function signIn_width_Google(){
+        
+    signInWithRedirect(auth, googleProvider);
+    useEffect(() =>{
+    getRedirectResult(auth)
+    .then((res) => {
+    
+    const credential = GoogleAuthProvider.credentialFromResult(res);
+    const token = credential.accessToken;
+    const user = res.user;
+    console.log("Success google signin")
+  }).catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    const email = error.customData.email;
+    const credential = GoogleAuthProvider.credentialFromError(error);
+
+  });
+    }, [])
+    };
+
+
+    function signIn_with_Apple(){
+        signInWithPopup(auth, aple_provider)
+        .then((res) =>{
+             const user = result.user;
+
+    // Apple credential
+    const credential = OAuthProvider.credentialFromResult(result);
+    const accessToken = credential.accessToken;
+    const idToken = credential.idToken;
+        })
+        .catch(() =>{
+             // Handle Errors here.
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    // The email of the user's account used.
+    const email = error.customData.email;
+    // The credential that was used.
+    const credential = OAuthProvider.credentialFromError(error);
+        })
+    }
+    
+
+    const [username, setUsername] = useState(),
+          [email, setEmail] = useState(), 
+          [password, setPassword] = useState();
+
  const dispatch = useDispatch(); 
     const LogoImg = (
         <View style = {styles.logoContainer}>
@@ -30,11 +118,17 @@ export default function AuthScreen(){
             <Text style = {{fontSize: 14, fontWeight: "300"}}>Forgot username or password? <TouchableOpacity><Text style = {{bottom: -5, color: "rgba(250, 84,84,1)", textDecorationLine: "underline", }}>Reset</Text></TouchableOpacity></Text>
            
             <View style = {[styles.row, {columnGap: 50, backgroundColor: "transparent", justifyContent:"center", }]}>
-            <TouchableOpacity>
+            <TouchableOpacity
+            onPress={() => signIn_with_Apple()}>
             <Image source = {AppleLogo} style = {{height: w, width:w}} />
+
             </TouchableOpacity>
       
-            <TouchableOpacity style = {{borderRadius: 100, overflow: "hidden"}}>
+            <TouchableOpacity style = {{borderRadius: 100, overflow: "hidden"}}
+            onPress = {() => {
+                //signIn_width_Google(); 
+            }}>
+                
             <Image source = {GoogleLogo} style = {{height: w, width:w}} />
             </TouchableOpacity>
 
@@ -44,17 +138,20 @@ export default function AuthScreen(){
 
     )
 
+
+
+
     const LogIn = (
         <View style = {[styles.column, {backgroundColor: "transparent", padding: 50, alignItems:"center", rowGap: 40, bottom: -70}]}>
             <TouchableOpacity style = {styles.textInputContainer}>            
-                <TextInput placeholder="username / email" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}/>
+                <TextInput  value = {email} onChangeText={(v) => setEmail(v)} placeholder="username / email" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}/>
             </TouchableOpacity>
 
             <TouchableOpacity style = {styles.textInputContainer}>            
-                <TextInput placeholder="password" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}/>
+                <TextInput value={password} onChangeText={(v) => setPassword(v)} placeholder="password" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}/>
             </TouchableOpacity>
 
-            <TouchableOpacity style = {styles.authButtons} onPress ={() => dispatch(nav("IntroCustomization"))}>
+            <TouchableOpacity style = {styles.authButtons} onPress ={() =>  signIn_auth(email, password, () => dispatch(nav("IntroCustomization")))}>
                 <Text style = {styles.authButtons_text}>SignIn</Text>
             </TouchableOpacity>
 
@@ -68,18 +165,24 @@ export default function AuthScreen(){
     const SignUp = (
         <View style = {[styles.column, {backgroundColor: "transparent", padding: 50, alignItems:"center", rowGap: 50, bottom: -20}]}>
             <TouchableOpacity style = {styles.textInputContainer}>            
-                <TextInput placeholder="username" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}/>
+                <TextInput placeholder="username" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}
+                value = {username} onChangeText={(v) => setUsername(v)}/>
             </TouchableOpacity>
 
             <TouchableOpacity style = {styles.textInputContainer}>            
-                <TextInput placeholder="email" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}/>
+                <TextInput placeholder="email" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}
+                value = {email} onChangeText={(v) => setEmail(v)}/>
             </TouchableOpacity>
 
             <TouchableOpacity style = {styles.textInputContainer}>            
-                <TextInput placeholder="password" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}/>
+                <TextInput placeholder="password" style={styles.textInput} placeholderTextColor={"rgba(0,0,0, .25)"}
+                value={password} onChangeText={(v) => setPassword(v)}/>
             </TouchableOpacity>
             
-            <TouchableOpacity style = {styles.authButtons} onPress={() => dispatch(nav("IntroCustomization"))}>
+            <TouchableOpacity style = {styles.authButtons} onPress={() =>{
+                signUp_auth(username, email, password, () => dispatch(nav("IntroCustomization"))); 
+                //console.log(email)
+            }}>
                 <Text style = {styles.authButtons_text}>SignUp</Text>
             </TouchableOpacity>
 

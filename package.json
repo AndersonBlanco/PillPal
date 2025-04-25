@@ -9,15 +9,15 @@
     "web": "expo start --web"
   },
   "dependencies": {
-    "@config-plugins/react-native-ble-plx": "^7.0.0",
     "@react-navigation/native": "^7.0.14",
     "@react-navigation/native-stack": "^7.2.0",
     "@reduxjs/toolkit": "^2.5.0",
     "eas-cli": "^15.0.14",
-    "expo": "^49.0.23",
-    "expo-dev-client": "~5.0.12",
+    "expo": "^52.0.42",
+    "expo-dev-client": "~5.0.17",
     "expo-device": "^7.0.2",
     "expo-status-bar": "~2.0.0",
+    "firebase": "^11.6.0",
     "react": "18.3.1",
     "react-native": "^0.76.5",
     "react-native-ble-manager": "^12.1.4",

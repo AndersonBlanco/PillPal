@@ -3,7 +3,7 @@
     "newArchEnabled": true,
     "name": "pill-pal",
     "slug": "pill-pal",
-    "version": "1.1.8",
+    "version": "1.2.0",
     "extra": {
       "eas": {
         "projectId": "2777fd1a-ac1b-4e2a-85b6-ddcc3a17f18b"
@@ -32,17 +32,7 @@
       "package": "com.anderson913.pillpal"
     },
     "plugins": [
-      ["react-native-ble-plx"], 
-      ["react-native-ble-manager", {"bluetoothAlwaysPermission": true, "isBackgroundEnabled": true}],
-
-      [
-        "@config-plugins/react-native-ble-plx",
-        {
-          "isBackgroundEnabled": true,
-          "modes": ["central"],
-          "bluetoothAlwaysPermission": "Allow $(PRODUCT_NAME) to connect to bluetooth devices"
-        }
-      ],
+      
     ],
 
     

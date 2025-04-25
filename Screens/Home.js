@@ -16,14 +16,15 @@ import { Provider, useSelector, useDispatch } from 'react-redux';
 import { store } from "../store";
 import { nav } from "../navigationSlice";
 import SideMenu from "../components/sideMenu";
-
+//import BleStart from "../components/blueDevices";
 //import BleManager, { BleState, Peripheral }  from 'react-native-ble-manager';
 import { NativeModules, NativeAppEventEmitter, DeviceEventEmitter, Platform} from "react-native";
-import { BleManager } from "react-native-ble-plx";
+//import { BleManager } from "react-native-ble-plx";
 import { EventEmitter, } from "expo";
 
-//getting permission:
 
+//getting permission:
+/*
 async function requestPermission(){
   try{
 
@@ -47,6 +48,8 @@ async function requestPermission(){
 }
 
 }
+*/ 
+
 
 export default function Home({navigation}){
     const [man, setMan] = useState();
@@ -54,11 +57,7 @@ export default function Home({navigation}){
 
     useEffect(() =>{
        // requestPermission();
-
-       
-       return () =>{
-        
-       }; 
+ 
        
     },[]); 
 
@@ -87,6 +86,7 @@ const ListPillPals = ({dictionary}) =>{
     return(
     <>
     <View style = {[styles.column, {rowGap: 100}]}>
+    
             <TouchableOpacity style = {{bottom: 50}}>
                 <Image source = {User} style = {{height: profileImgSize, width: profileImgSize}} />
             </TouchableOpacity>
