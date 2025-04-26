@@ -16,7 +16,7 @@ export default function SideMenu(){
        <TouchableOpacity onPress = {() => setModalView(!modalView)} style = {{position:"absolute", left: 20.5, top: 48}}><MiniLogoSVG height = {50}/></TouchableOpacity>
                <Modal animationInTiming={601} animationOutTiming = {500} backdropColor="transparent" animationIn = "slideInLeft" animationOut= "slideOutLeft" isVisible = {modalView} onTouchMove={() => setModalView(false)} style={{}}>
                    <View style = {[styles.row, {height:"110%"}]}  >
-                   <View style = {{paddingTop: 65, backgroundColor: "white", height: "100%", width: "50%", shadowColor: "black", shadowOpacity: .25, shadowRadius: 5, shadowOffset:{width: 10}, }}>
+                   <View style = {{paddingTop: 65, backgroundColor: "white", height: "100%", paddingHorizontal: 15, left: -20.5, width: "55%", shadowColor: "black", shadowOpacity: .25, shadowRadius: 5, shadowOffset:{width: 10}, }}>
                        <ScrollView style ={{top: -50}}>
                      <View style = {[styles.column, {paddingTop: 100, rowGap: 15, paddingRight: 25}]}>
                        <TouchableOpacity onPress={() => dispatch(nav("MyPillPals"))}><Text style = {[styles.sideMenuText, {fontSize: 15}]}>Manage Pill-Pals</Text></TouchableOpacity>

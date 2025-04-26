@@ -7,24 +7,31 @@ export const myPillPalsSlice = createSlice({
             pillPals: [
                 {
                     "id": 0, 
-                    "charge": "100%",
+                    "charge": 100,
                     "Timer": "00:01:00:00",
                     "Haptics": "Flash",
                     "Name": "PillPal1",
                 },
                 {
                     "id": 1,
-                    "charge": "75%",
+                    "charge": 75,
                     "Timer": "00:01:00:00",
                     "Haptics": "Flash",
                     "Name": "PillPal2"
                 },
                 {
                     "id": 2,
-                    "charge": "50%",
+                    "charge": 50,
                     "Timer": "00:01:00:00",
                     "Haptics": "Flash",
                     "Name": "PillPal3"
+                },
+                  {
+                    "id": 3,
+                    "charge": 25,
+                    "Timer": "00:01:00:00",
+                    "Haptics": "Flash",
+                    "Name": "PillPal4"
                 },
             ]}
     },
@@ -33,6 +40,9 @@ export const myPillPalsSlice = createSlice({
         addPal: (state, action) =>{
           //modify and append new pill-pal to existing inventory 
         },
+        editPalTimer: (state, action, data)=>{ //payload is id
+            state.value.pillPals[action.payload] = data.payload; 
+        }
 
     }
 })
